@@ -6,72 +6,86 @@
 
 ```
 src/
-├── app/                        # Core app setup
-│   ├── App.tsx                 # Main app component
-│   ├── routes/
+├── core/                       # Core app setup
+│   ├── layout/               
+│   │   ├── RootLayout.tsx
+│   │   ├── Header/
+│   │   ├── Sidebar/
+│   │   ├── Footer/
+│   │   └── index.ts
+│   ├── store/                  # Global state management
+(Redux)
+│   │   ├── index.ts
+│   │   ├── rootReducer.ts
+│   │   └── middlewares.ts
+(Zustand)
+│   │   ├── useAppStore.ts      # global app-level state (ถ้ามี)
+│   │   └── index.ts            # export รวม store (optional)
+│   ├── router/                 # Router configuration
 │   │   ├── index.tsx           # Route definitions
-│   │   ├── ProtectedRoute.tsx  # Auth protection wrapper
-│   │   └── types.ts            # Route-related types
+│   │   ├── routes.tsx
+│   │   ├── guards/                  # Route guards
+│   │   │   ├── ProtectedRoute.tsx   # Auth protection wrapper
+│   │   │   ├── RouteGuards.tsx
+│   │   │   ├── GuestRoute.tsx       # (optional) สำหรับหน้าที่ห้าม login แล้วเข้า เช่น LoginPage
+│   │   │   └── AdminRoute.tsx       # (optional) สำหรับ role-based
+│   │   └── loaders/                 # Route loaders
+│   │   │   ├── ddashboardLoader.ts
+│   │   │   ├── userLoader.ts
+│   │   │   └── settingsLoader.ts
 │   └── providers/
-│       ├── QueryProvider.tsx   # React Query setup
-│       ├── ThemeProvider.tsx   # Theme/styling provider
-│       └── AuthProvider.tsx    # Authentication context
+│       ├── QueryProvider.tsx        # React Query setup
+│       ├── ThemeProvider.tsx        # Theme/styling provider
+│       └── AuthProvider.tsx         # Authentication context
 │
-├── features/                   # Feature-based organization
+├── features/                        # Feature-based organization
 │   ├── auth/
 │   │   ├── components/
 │   │   │   ├── LoginForm.tsx
 │   │   │   ├── SignupForm.tsx
 │   │   │   └── index.ts        # Export barrel
-│   │   ├── pages/
-│   │   │   ├── LoginPage.tsx
-│   │   │   └── SignupPage.tsx
 │   │   ├── hooks/
 │   │   │   ├── useAuth.ts
 │   │   │   └── useLogin.ts
-│   │   ├── api/
-│   │   │   └── auth.api.ts
-│   │   ├── types.ts
-│   │   └── index.ts
-│   │
-│   ├── dashboard/
-│   │   ├── components/
-│   │   │   ├── DashboardCard.tsx
-│   │   │   ├── StatsWidget.tsx
+│   │   ├── services/
+│   │   │   ├── auth.service.ts
 │   │   │   └── index.ts
-│   │   ├── pages/
-│   │   │   └── DashboardPage.tsx
-│   │   ├── hooks/
-│   │   │   └── useDashboard.ts
-│   │   ├── api/
-│   │   │   └── dashboard.api.ts
-│   │   └── types.ts
+│   │   ├── store/
+│   │   │   ├── authSlice.ts
+│   │   │   └── index.ts
+│   │   ├── types/
+│   │   │   ├── auth.types.ts
+│   │   │   └── index.ts
+│   │   ├── utils/
+│   │   │   ├── validation.utils.ts
+│   │   │   └── index.ts
+│   │   └── routes.ts
 │   │
-│   ├── products/
+│   ├── dashboard/                # Dashboard feature
 │   │   ├── components/
-│   │   │   ├── ProductCard.tsx
-│   │   │   ├── ProductList.tsx
-│   │   │   └── ProductForm.tsx
-│   │   ├── pages/
-│   │   │   ├── ProductsPage.tsx
-│   │   │   ├── ProductDetailPage.tsx
-│   │   │   └── CreateProductPage.tsx
 │   │   ├── hooks/
-│   │   │   ├── useProducts.ts
-│   │   │   └── useProductDetail.ts
-│   │   ├── api/
-│   │   │   └── products.api.ts
-│   │   └── types.ts
+│   │   ├── helpers/
+│   │   ├── services/
+│   │   ├── store/
+│   │   ├── types/
+│   │   └── routes.ts
 │   │
-│   └── profile/
+│   ├── user-management/          # User management feature
+│   │   ├── components/
+│   │   ├── constansts/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── store/
+│   │   ├── types/
+│   │   └── routes.ts
+│   │
+│   └── settings/                 # Settings feature
 │       ├── components/
-│       │   └── ProfileForm.tsx
-│       ├── pages/
-│       │   └── ProfilePage.tsx
 │       ├── hooks/
-│       │   └── useProfile.ts
-│       └── api/
-│           └── profile.api.ts
+│       ├── services/
+│       ├── shcemas/
+│       ├── types/
+│       └── routes.ts
 │
 ├── shared/                     # Reusable components and utilities
 │   ├── components/
@@ -83,21 +97,19 @@ src/
 │   │   │   ├── Input/
 │   │   │   ├── Modal/
 │   │   │   └── index.ts
-│   │   ├── layout/             # Layout components
-│   │   │   ├── Header.tsx
-│   │   │   ├── Sidebar.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── Layout.tsx
-│   │   └── common/             # Common business components
+│   │   └── common/                  # Common business components
 │   │       ├── LoadingSpinner.tsx
-│   │       ├── ErrorBoundary.tsx
+│   │       ├── ErrorBoundary.tsx    # ไม่ค่อยจำเป็น
+│   │       ├── ErrorFallback.tsx
 │   │       └── NotFound.tsx
 │   │
-│   ├── hooks/                  # Shared custom hooks
+│   ├── hooks/                       # Shared custom hooks
 │   │   ├── useDebounce.ts
 │   │   ├── useLocalStorage.ts
 │   │   ├── useToggle.ts
 │   │   └── index.ts
+│   │
+│   ├── helpers/
 │   │
 │   ├── utils/                  # Utility functions
 │   │   ├── formatters/
@@ -127,12 +139,37 @@ src/
 │       ├── common.ts           # Common types
 │       └── index.ts
 │
+├── pages/                       # Route pages
+│   ├── NotFoundPage.tsx         # 404 page
+│   ├── ErrorPage.tsx            # สำหรับ errorElement
+│   ├── auth/
+│   │   ├── LoginPage.tsx
+│   │   ├── SignupPage.tsx
+│   │   └── AuthLayout.tsx
+│   ├── dashboard/
+│   │   ├── DashboardPage.tsx
+│   │   └── DashboardLayout.tsx
+│   ├── users/
+│   │   ├── UsersPage.tsx
+│   │   ├── UserDetailPage.tsx
+│   │   └── UsersLayout.tsx
+│   └── products/
+│       ├── ProductsPage.tsx
+│       ├── ProductDetailPage.tsx
+│       ├── ProductEditPage.tsx
+│       └── ProductsLayout.tsx
+│
 ├── assets/                     # Static assets
 │   ├── images/
 │   ├── icons/
-│   └── styles/
-│       ├── globals.css
-│       └── variables.css
+│   ├── fonts/
+│   └── videos/
+│
+├── config/                       # Configuration files
+│   ├── env.config.ts
+│   ├── database.config.ts
+│   ├── theme.config.ts
+│   └── index.ts
 │
 ├── main.tsx                    # App entry point
 └── vite-env.d.ts              # Vite type definitions
