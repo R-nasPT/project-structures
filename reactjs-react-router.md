@@ -27,10 +27,12 @@ src/
 │   │   ├── guards/                  # Route guards
 │   │   │   ├── ProtectedRoute.tsx   # Auth protection wrapper
 │   │   │   ├── RouteGuards.tsx
+│   │   │   ├── AuthGuard.tsx
+│   │   │   ├── RoleGuard.tsx
 │   │   │   ├── GuestRoute.tsx       # (optional) สำหรับหน้าที่ห้าม login แล้วเข้า เช่น LoginPage
 │   │   │   └── AdminRoute.tsx       # (optional) สำหรับ role-based
 │   │   └── loaders/                 # Route loaders
-│   │   │   ├── ddashboardLoader.ts
+│   │   │   ├── dashboardLoader.ts
 │   │   │   ├── userLoader.ts
 │   │   │   └── settingsLoader.ts
 │   └── providers/
@@ -47,10 +49,15 @@ src/
 │   │   ├── hooks/
 │   │   │   ├── useAuth.ts
 │   │   │   └── useLogin.ts
+│   │   ├── schemas/
+│   │   │   ├── login.schema.ts
+│   │   │   ├── register.schema.ts
+│   │   │   └── index.ts
 │   │   ├── services/
 │   │   │   ├── auth.service.ts
 │   │   │   └── index.ts
 │   │   ├── store/
+│   │   │   ├── useAuthStore.ts
 │   │   │   ├── authSlice.ts
 │   │   │   └── index.ts
 │   │   ├── types/
@@ -83,7 +90,7 @@ src/
 │       ├── components/
 │       ├── hooks/
 │       ├── services/
-│       ├── shcemas/
+│       ├── schemas/
 │       ├── types/
 │       └── routes.ts
 │
@@ -103,45 +110,72 @@ src/
 │   │       ├── ErrorFallback.tsx
 │   │       └── NotFound.tsx
 │   │
-│   ├── hooks/                       # Shared custom hooks
-│   │   ├── useDebounce.ts
-│   │   ├── useLocalStorage.ts
-│   │   ├── useToggle.ts
+│   ├── constants/
+│   │   ├── routes.constants.ts
+│   │   ├── app.constants.ts
+│   │   ├── roles.constants.ts
+│   │   ├── regex.constants.ts        # Regular expressions
+│   │   ├── storage.constants.ts      # key ของ localStorage / sessionStorage
 │   │   └── index.ts
 │   │
 │   ├── helpers/
+│   │   ├── auth.helpers.ts      # Authentication helpers
+│   │   ├── business.helpers.ts  # Business logic helpers
+│   │   ├── api.helpers.ts       # API-related helpers
+│   │   ├── ui.helpers.ts        # UI-specific helpers
+│   │   └── index.ts             # Export barrel
 │   │
-│   ├── utils/                  # Utility functions
-│   │   ├── formatters/
-│   │   │   ├── date.ts
-│   │   │   ├── currency.ts
-│   │   │   └── index.ts
-│   │   ├── validators/
-│   │   │   ├── email.ts
-│   │   │   ├── password.ts
-│   │   │   └── index.ts
-│   │   ├── api/
-│   │   │   ├── client.ts       # Axios/fetch configuration
-│   │   │   ├── interceptors.ts
-│   │   │   └── index.ts
-│   │   └── helpers/
-│   │       ├── storage.ts
-│   │       └── errors.ts
-│   │
-│   ├── constants/
-│   │   ├── routes.ts           # Route constants
-│   │   ├── api.ts              # API endpoints
-│   │   ├── config.ts           # App configuration
+│   ├── hooks/                       # Shared custom hooks
+│   │   ├── useAnalytics.ts
+│   │   ├── useCopyToClipboard.ts
+│   │   ├── usePermissions.ts
 │   │   └── index.ts
 │   │
-│   └── types/
-│       ├── api.ts              # API response types
-│       ├── common.ts           # Common types
+│   ├── lib/
+│   │   ├── axios.lib.ts          # Axios configuration
+│   │   ├── icons.lib.ts 
+│   │   ├── logger.lib.ts        # Logging setup
+│   │   └── index.ts
+│   │
+│   ├── schemas/
+│   │   ├── common.schema.ts      # Common validation patterns
+│   │   ├── api.schema.ts         # API response schemas
+│   │   ├── form.schema.ts        # Reusable form schemas
+│   │   └── index.ts
+│   │
+│   ├── services/                 # Shared services
+│   │   ├── api/
+│   │   │   ├── apiClient.ts
+│   │   │   ├── endpoints.ts
+│   │   │   ├── interceptors.ts
+│   │   │   └── index.ts
+│   │   ├── storage/
+│   │   │   ├── localStorage.ts
+│   │   │   ├── sessionStorage.ts
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   │
+│   ├── store/                 # Shared services
+│   │   ├── useCommonStore.ts  # Common business state
+│   │   ├── useCacheStore.ts
+│   │   ├── useUIStore.ts
+│   │   └── index.ts
+│   │
+│   ├── utils/                  # Utility functions
+│   │   ├── format.utils.ts
+│   │   ├── date.utils.ts
+│   │   └── index.ts
+│   │
+│   └── types/                    # Shared TypeScript types
+│       ├── api.types.ts
+│       ├── common.types.ts
+│       ├── env.types.ts
 │       └── index.ts
 │
 ├── pages/                       # Route pages
 │   ├── NotFoundPage.tsx         # 404 page
 │   ├── ErrorPage.tsx            # สำหรับ errorElement
+│   ├── MaintenancePage.tsx      # หน้าปิดปรุงระบบ
 │   ├── auth/
 │   │   ├── LoginPage.tsx
 │   │   ├── SignupPage.tsx
