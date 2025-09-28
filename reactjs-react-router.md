@@ -63,9 +63,6 @@ src/
 │   │   ├── types/
 │   │   │   ├── auth.types.ts
 │   │   │   └── index.ts
-│   │   ├── utils/
-│   │   │   ├── validation.utils.ts
-│   │   │   └── index.ts
 │   │   └── routes.ts
 │   │
 │   ├── dashboard/                # Dashboard feature
