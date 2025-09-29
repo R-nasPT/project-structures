@@ -1,55 +1,55 @@
 # React.js + React Router Project Structure
 
-> A scalable, feature-based folder structure for React applications using React Router
+> A scalable, enterprise-grade folder structure for React applications using React Router with modern patterns
 
 ## 📁 Recommended Structure
 
 ```
 src/
-├── core/                       # Core app setup
-│   ├── layout/               
+├── core/                                  # 🏗️ Core app infrastructure
+│   ├── layout/                            # 📐 App layout components
 │   │   ├── RootLayout.tsx
 │   │   ├── Header/
 │   │   ├── Sidebar/
 │   │   ├── Footer/
 │   │   └── index.ts
-│   ├── store/                  # Global state management
+│   ├── store/                             # 🗄️ Global state management
 (Redux)
 │   │   ├── index.ts
 │   │   ├── rootReducer.ts
 │   │   └── middlewares.ts
 (Zustand)
-│   │   ├── useAppStore.ts      # global app-level state (ถ้ามี)
-│   │   └── index.ts            # export รวม store (optional)
-│   ├── router/                 # Router configuration
-│   │   ├── index.tsx           # Route definitions
+│   │   ├── useAppStore.ts
+│   │   └── index.ts
+│   ├── router/                            # 🧭 Router configuration
+│   │   ├── index.tsx                      # Route definitions
 │   │   ├── routes.tsx
-│   │   ├── guards/                  # Route guards
-│   │   │   ├── ProtectedRoute.tsx   # Auth protection wrapper
+│   │   ├── guards/                        # 🛡️ Route protection
+│   │   │   ├── ProtectedRoute.tsx         # 🔒 Auth protection wrapper
 │   │   │   ├── RouteGuards.tsx
 │   │   │   ├── AuthGuard.tsx
 │   │   │   ├── RoleGuard.tsx
-│   │   │   ├── GuestRoute.tsx       # (optional) สำหรับหน้าที่ห้าม login แล้วเข้า เช่น LoginPage
-│   │   │   └── AdminRoute.tsx       # (optional) สำหรับ role-based
-│   │   └── loaders/                 # Route loaders
+│   │   │   ├── GuestRoute.tsx             # 🚪 (optional) For pages that cannot be accessed after logging in, such as LoginPage
+│   │   │   └── AdminRoute.tsx             # 🔒 (optional) สำหรับ role-based
+│   │   └── loaders/                       # 📥 Data pre-fetching
 │   │   │   ├── dashboardLoader.ts
 │   │   │   ├── userLoader.ts
 │   │   │   └── settingsLoader.ts
-│   └── providers/
-│       ├── QueryProvider.tsx        # React Query setup
-│       ├── ThemeProvider.tsx        # Theme/styling provider
-│       └── AuthProvider.tsx         # Authentication context
+│   └── providers/                         # 🔧 App-wide providers
+│       ├── QueryProvider.tsx
+│       ├── ThemeProvider.tsx
+│       └── AuthProvider.tsx
 │
-├── features/                        # Feature-based organization
-│   ├── auth/
+├── features/                              # 🎯 Feature-based modules
+│   ├── auth/                              # 🔐 Authentication feature
 │   │   ├── components/
 │   │   │   ├── LoginForm.tsx
 │   │   │   ├── SignupForm.tsx
-│   │   │   └── index.ts        # Export barrel
+│   │   │   └── index.ts
 │   │   ├── hooks/
 │   │   │   ├── useAuth.ts
 │   │   │   └── useLogin.ts
-│   │   ├── schemas/
+│   │   ├── schemas/                       # 📋 Validation schemas
 │   │   │   ├── login.schema.ts
 │   │   │   ├── register.schema.ts
 │   │   │   └── index.ts
@@ -65,7 +65,7 @@ src/
 │   │   │   └── index.ts
 │   │   └── routes.ts
 │   │
-│   ├── dashboard/                # Dashboard feature
+│   ├── dashboard/                         # 📊 Dashboard feature
 │   │   ├── components/
 │   │   ├── hooks/
 │   │   ├── helpers/
@@ -74,7 +74,7 @@ src/
 │   │   ├── types/
 │   │   └── routes.ts
 │   │
-│   ├── user-management/          # User management feature
+│   ├── user-management/                   # 👥 User management feature
 │   │   ├── components/
 │   │   ├── constansts/
 │   │   ├── hooks/
@@ -83,7 +83,7 @@ src/
 │   │   ├── types/
 │   │   └── routes.ts
 │   │
-│   └── settings/                 # Settings feature
+│   └── settings/                          # ⚙️ App Settings feature
 │       ├── components/
 │       ├── hooks/
 │       ├── services/
@@ -91,9 +91,9 @@ src/
 │       ├── types/
 │       └── routes.ts
 │
-├── shared/                     # Reusable components and utilities
+├── shared/                                # 🔄 Reusable components and utilities
 │   ├── components/
-│   │   ├── ui/                 # Basic UI components
+│   │   ├── ui/                            # 🧱 Basic UI building blocks - Reusable everywhere
 │   │   │   ├── button/
 │   │   │   │   ├── Button.tsx
 │   │   │   │   ├── Button.test.tsx
@@ -113,7 +113,7 @@ src/
 │   │   │   ├── switch/
 │   │   │   ├── breadcrumb/
 │   │   │   └── index.ts
-│   │   ├── composite/
+│   │   ├── composite/                     # 🔗 Combined UI components - Enhanced functionality
 │   │   │   ├── search-box/
 │   │   │   │   ├── SearchBox.tsx
 │   │   │   │   ├── SearchBox.test.tsx
@@ -128,18 +128,18 @@ src/
 │   │   │   ├── date-picker/
 │   │   │   ├── confirm-dialog/
 │   │   │   └── index.ts
-│   │   ├── widgets/
+│   │   ├── widgets/                       # 🎯 Purpose-specific components - Business logic included (component เฉพาะจุดประสงค์)
 │   │   │   ├── status-badge/
 │   │   │   │   ├── StatusBadge.tsx
 │   │   │   │   ├── StatusBadge.test.tsx
 │   │   │   │   ├── StatusBadge.types.tsx
 │   │   │   │   └── index.ts
-│   │   │   ├── role-chip/           # แสดง role ของผู้ใช้ + สี + permission indicator
-│   │   │   ├── currency-display/    # แสดงเงินตรา + ฟอร์แมต + สัญลักษณ์
-│   │   │   ├── attachment-section/  # แสดงไฟล์แนบ + ดาวน์โหลด + preview
-│   │   │   ├── stat-card/           # การ์ดแสดงสถิติ + icon + trend + comparison
+│   │   │   ├── role-chip/                 # 🔐 Show user role + color + permission indicator
+│   │   │   ├── currency-display/          # 💵 Show currency + format + symbol
+│   │   │   ├── attachment-section/
+│   │   │   ├── stat-card/                 # 📊 Show statistics + icon + trend + comparison
 │   │   │   └── index.ts
-│   │   ├── wrappers/
+│   │   ├── wrappers/                      # 📦 Layout containers - Structure and spacing
 │   │   │   ├── section-panel/
 │   │   │   │   ├── SectionPanel.tsx
 │   │   │   │   ├── SectionPanel.test.tsx
@@ -147,51 +147,51 @@ src/
 │   │   │   │   └── index.ts
 │   │   │   ├── page-header/
 │   │   │   └── index.ts
-│   │   └── common/                  # Common business components
+│   │   └── common/                        # ⚡ Common utilities - States and notifications
 │   │   │   ├── loading-spinner/
 │   │   │   │   ├── LoadingSpinner.tsx
 │   │   │   │   ├── LoadingSpinner.test.tsx
 │   │   │   │   └── index.ts
-│   │   │   ├── error-boundary/        # ไม่ค่อยจำเป็น
+│   │   │   ├── error-boundary/            # ⚠️ ไม่ค่อยจำเป็น
 │   │   │   ├── error-fallback/
 │   │   │   ├── not-found/
 │   │   │   └── index.ts
-│   │   └── index.ts
+│   │   └── index.ts                       # 📦 Export barrel
 │   │
 │   ├── constants/
 │   │   ├── routes.constants.ts
 │   │   ├── app.constants.ts
 │   │   ├── roles.constants.ts
-│   │   ├── regex.constants.ts        # Regular expressions
-│   │   ├── storage.constants.ts      # key ของ localStorage / sessionStorage
+│   │   ├── regex.constants.ts             # ✍️ Regular expressions
+│   │   ├── storage.constants.ts           # 🗝️ Keys for localStorage / sessionStorage
 │   │   └── index.ts
 │   │
-│   ├── helpers/
-│   │   ├── auth.helpers.ts      # Authentication helpers
-│   │   ├── business.helpers.ts  # Business logic helpers
-│   │   ├── api.helpers.ts       # API-related helpers
-│   │   ├── ui.helpers.ts        # UI-specific helpers
-│   │   └── index.ts             # Export barrel
+│   ├── helpers/                           # 🛠️ Helper functions
+│   │   ├── auth.helpers.ts
+│   │   ├── business.helpers.ts
+│   │   ├── api.helpers.ts                 # 🌐 API-related helpers
+│   │   ├── ui.helpers.ts                  # 🎨 UI-specific helpers
+│   │   └── index.ts
 │   │
-│   ├── hooks/                       # Shared custom hooks
+│   ├── hooks/                             # 🪝 Shared custom hooks
 │   │   ├── useAnalytics.ts
 │   │   ├── useCopyToClipboard.ts
 │   │   ├── usePermissions.ts
 │   │   └── index.ts
 │   │
-│   ├── lib/
-│   │   ├── axios.lib.ts          # Axios configuration
+│   ├── lib/                               # 📚 Third-party configs
+│   │   ├── axios.lib.ts
 │   │   ├── icons.lib.ts 
-│   │   ├── logger.lib.ts        # Logging setup
+│   │   ├── logger.lib.ts                  # 📝 Logging setup
 │   │   └── index.ts
 │   │
-│   ├── schemas/
-│   │   ├── common.schema.ts      # Common validation patterns
-│   │   ├── api.schema.ts         # API response schemas
-│   │   ├── form.schema.ts        # Reusable form schemas
+│   ├── schemas/                           # 📂 Shared data schemas (validation, API shapes, form structures)
+│   │   ├── common.schema.ts
+│   │   ├── api.schema.ts
+│   │   ├── form.schema.ts
 │   │   └── index.ts
 │   │
-│   ├── services/                 # Shared services
+│   ├── services/                          # 🔌 Shared services
 │   │   ├── api/
 │   │   │   ├── apiClient.ts
 │   │   │   ├── endpoints.ts
@@ -203,27 +203,27 @@ src/
 │   │   │   └── index.ts
 │   │   └── index.ts
 │   │
-│   ├── store/                 # Shared services
-│   │   ├── useCommonStore.ts  # Common business state
+│   ├── store/                             # 🏪 Shared state stores
+│   │   ├── useCommonStore.ts
 │   │   ├── useCacheStore.ts
 │   │   ├── useUIStore.ts
 │   │   └── index.ts
 │   │
-│   ├── utils/                  # Utility functions
+│   ├── utils/                             # 🔧 Utility functions
 │   │   ├── format.utils.ts
 │   │   ├── date.utils.ts
 │   │   └── index.ts
 │   │
-│   └── types/                    # Shared TypeScript types
+│   └── types/                             # 🧩 Shared TypeScript types
 │       ├── api.types.ts
 │       ├── common.types.ts
 │       ├── env.types.ts
 │       └── index.ts
 │
-├── pages/                       # Route pages
-│   ├── NotFoundPage.tsx         # 404 page
-│   ├── ErrorPage.tsx            # สำหรับ errorElement
-│   ├── MaintenancePage.tsx      # หน้าปิดปรุงระบบ
+├── pages/                                 # 📄 Route page components
+│   ├── NotFoundPage.tsx                   # 🚫 404 error page
+│   ├── ErrorPage.tsx                      # 💥 Global error page
+│   ├── MaintenancePage.tsx
 │   ├── auth/
 │   │   ├── LoginPage.tsx
 │   │   ├── SignupPage.tsx
@@ -241,20 +241,20 @@ src/
 │       ├── SettingEditPage.tsx
 │       └── SettingsLayout.tsx
 │
-├── assets/                     # Static assets
+├── assets/                                # 📁 Static assets
 │   ├── images/
 │   ├── icons/
 │   ├── fonts/
 │   └── videos/
 │
-├── config/                       # Configuration files
+├── config/                                # ⚙️ Configuration files
 │   ├── env.config.ts
 │   ├── database.config.ts
 │   ├── theme.config.ts
 │   └── index.ts
 │
-├── main.tsx                    # App entry point
-└── vite-env.d.ts              # Vite type definitions
+├── main.tsx                               # 🚀 App entry point
+└── vite-env.d.ts                          # ⚡ Vite type definitions
 ```
 
 ## 🎯 Key Principles
