@@ -94,18 +94,69 @@ src/
 ├── shared/                     # Reusable components and utilities
 │   ├── components/
 │   │   ├── ui/                 # Basic UI components
-│   │   │   ├── Button/
+│   │   │   ├── button/
 │   │   │   │   ├── Button.tsx
 │   │   │   │   ├── Button.test.tsx
+│   │   │   │   ├── Button.types.tsx
 │   │   │   │   └── index.ts
-│   │   │   ├── Input/
-│   │   │   ├── Modal/
+│   │   │   ├── input/
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── Input.test.tsx
+│   │   │   │   ├── Input.types.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── select/
+│   │   │   ├── checkbox/
+│   │   │   ├── modal/
+│   │   │   ├── badge/
+│   │   │   ├── card/
+│   │   │   ├── textarea/
+│   │   │   ├── switch/
+│   │   │   ├── breadcrumb/
+│   │   │   └── index.ts
+│   │   ├── composite/
+│   │   │   ├── search-box/
+│   │   │   │   ├── SearchBox.tsx
+│   │   │   │   ├── SearchBox.test.tsx
+│   │   │   │   ├── SearchBox.types.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── file-upload/
+│   │   │   │   ├── FileUpload.tsx
+│   │   │   │   ├── FileUpload.test.tsx
+│   │   │   │   ├── FileUpload.types.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── filter-bar/
+│   │   │   ├── date-picker/
+│   │   │   ├── confirm-dialog/
+│   │   │   └── index.ts
+│   │   ├── widgets/
+│   │   │   ├── status-badge/
+│   │   │   │   ├── StatusBadge.tsx
+│   │   │   │   ├── StatusBadge.test.tsx
+│   │   │   │   ├── StatusBadge.types.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── role-chip/           # แสดง role ของผู้ใช้ + สี + permission indicator
+│   │   │   ├── currency-display/    # แสดงเงินตรา + ฟอร์แมต + สัญลักษณ์
+│   │   │   ├── attachment-section/  # แสดงไฟล์แนบ + ดาวน์โหลด + preview
+│   │   │   ├── stat-card/           # การ์ดแสดงสถิติ + icon + trend + comparison
+│   │   │   └── index.ts
+│   │   ├── wrappers/
+│   │   │   ├── section-panel/
+│   │   │   │   ├── SectionPanel.tsx
+│   │   │   │   ├── SectionPanel.test.tsx
+│   │   │   │   ├── SectionPanel.types.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── page-header/
 │   │   │   └── index.ts
 │   │   └── common/                  # Common business components
-│   │       ├── LoadingSpinner.tsx
-│   │       ├── ErrorBoundary.tsx    # ไม่ค่อยจำเป็น
-│   │       ├── ErrorFallback.tsx
-│   │       └── NotFound.tsx
+│   │   │   ├── loading-spinner/
+│   │   │   │   ├── LoadingSpinner.tsx
+│   │   │   │   ├── LoadingSpinner.test.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── error-boundary/        # ไม่ค่อยจำเป็น
+│   │   │   ├── error-fallback/
+│   │   │   ├── not-found/
+│   │   │   └── index.ts
+│   │   └── index.ts
 │   │
 │   ├── constants/
 │   │   ├── routes.constants.ts
@@ -184,11 +235,11 @@ src/
 │   │   ├── UsersPage.tsx
 │   │   ├── UserDetailPage.tsx
 │   │   └── UsersLayout.tsx
-│   └── products/
-│       ├── ProductsPage.tsx
-│       ├── ProductDetailPage.tsx
-│       ├── ProductEditPage.tsx
-│       └── ProductsLayout.tsx
+│   └── settings/
+│       ├── SettingsPage.tsx
+│       ├── SettingDetailPage.tsx
+│       ├── SettingEditPage.tsx
+│       └── SettingsLayout.tsx
 │
 ├── assets/                     # Static assets
 │   ├── images/
