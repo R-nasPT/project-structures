@@ -701,18 +701,23 @@ Need to create a component?
 ## 🎨 Naming Conventions
 
 ### Files and Folders
-- Use **PascalCase** for component files: `ProductCard.tsx`
-- Use **camelCase** for utility files: `formatDate.ts`
-- Use **kebab-case** for folders: `user-profile/`
-- Use **UPPER_CASE** for constants: `API_ENDPOINTS`
+- Use **PascalCase** for component files: `ProductCard.tsx`, `UserProfile.tsx`
+- Use **dot notation** for non-component files: 
+  - `auth.service.ts`
+  - `register.schema.ts`
+  - `date.utils.ts`
+  - `business.helpers.ts`
+  - `routes.constants.ts`
+  - `logger.lib.ts`
+  - `common.types.ts`
+- Use **kebab-case** for folders: `user-management/`, `user-profile/`
+- Use **UPPER_CASE** for constant variables: `API_ENDPOINTS`, `ROLES`
 
 ### Components and Hooks
-* **Components**: `ProductCard`, `UserProfile`, `StatusBadge`
-* **Pages**: `ProductsPage`, `LoginPage`, `DashboardPage`
-* **Hooks**: `useProducts`, `useAuth`, `useDebounce`
-* **Contexts**: `AuthProvider`, `ThemeProvider`
-* **Services**: `authService`, `userService`, `productService`
-* **Utils**: `formatDate`, `capitalizeString`, `calculateTotal`
+- **Components**: `ProductCard`, `UserProfile`, `StatusBadge`
+- **Pages**: `ProductsPage`, `LoginPage`, `DashboardPage`
+- **Hooks**: `useProducts`, `useAuth`, `useDebounce`
+- **Contexts**: `AuthProvider`, `ThemeProvider`
 
 ## 📚 Additional Tips
 
