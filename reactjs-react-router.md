@@ -60,7 +60,7 @@
 │   │   │   ├── 📄 useAuthStore.ts
 │   │   │   ├── 📄 authSlice.ts
 │   │   │   └── 📄 index.ts
-│   │   ├── 📁 types/
+│   │   ├── 📁 types/                         # 🧬 Feature-specific types
 │   │   │   ├── 📄 auth.types.ts
 │   │   │   └── 📄 index.ts
 │   │   └── 📄 routes.ts
@@ -218,7 +218,7 @@
 │   │   ├── 📄 date.utils.ts
 │   │   └── 📄 index.ts
 │   │
-│   └── 📁 types/                             # 🧩 Shared TypeScript types
+│   └── 📁 types/                             # 🧩 Shared business types
 │       ├── 📄 api.types.ts
 │       ├── 📄 common.types.ts
 │       ├── 📄 env.types.ts
@@ -256,6 +256,12 @@
 │   ├── 📄 database.config.ts
 │   ├── 📄 theme.config.ts
 │   └── 📄 index.ts
+│
+├── 📁 types/                                 # 📘 Global types (augmentation, env)
+│   ├── 📄 vite-env.d.ts                      # Vite env
+│   ├── 📄 global.d.ts                        # Global window, etc.
+│   ├── 📄 react-query.d.ts                   # Extend React Query
+│   └── 📄 material-ui.d.ts                   # Extend MUI theme
 │
 ├── 📄 main.tsx                               # 🚀 App entry point
 └── 📄 vite-env.d.ts                          # ⚡ Vite type definitions
