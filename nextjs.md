@@ -201,7 +201,7 @@
 │   ├── 📄 env.d.ts
 │   └── 📄 next.d.ts
 │
-└── 📁 styles/                                # 🎨 global styles, tailwind.css
+├── 📁 styles/                                # 🎨 global styles, tailwind.css
 │   └── 📄 globals.css
 │
 └── 📄 middleware.tsx                         # 🚀 App entry point
