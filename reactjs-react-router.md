@@ -13,6 +13,7 @@
 │   │   ├── 📁 sidebar/
 │   │   ├── 📁 footer/
 │   │   └── 📄 index.ts
+│   │
 │   ├── 📁 store/                             # 🗄️ Global state management
 (Redux)
 │   │   ├── 📄 index.ts
@@ -21,6 +22,7 @@
 (Zustand)
 │   │   ├── 📄 useAppStore.ts
 │   │   └── 📄 index.ts
+│   │
 │   ├── 📁 router/                            # 🧭 Router configuration
 │   │   ├── 📄 index.tsx                      # Route definitions
 │   │   ├── 📄 routes.ts
@@ -32,9 +34,10 @@
 │   │   │   ├── 📄 GuestRoute.tsx             # 🚪 (optional) For pages that cannot be accessed after logging in, such as LoginPage
 │   │   │   └── 📄 AdminRoute.tsx             # 🔒 (optional) สำหรับ role-based
 │   │   └── 📁 loaders/                       # 📥 Data pre-fetching
-│   │   │   ├── 📄 dashboardLoader.ts
-│   │   │   ├── 📄 userLoader.ts
-│   │   │   └── 📄 settingsLoader.ts
+│   │       ├── 📄 dashboardLoader.ts
+│   │       ├── 📄 userLoader.ts
+│   │       └── 📄 settingsLoader.ts
+│   │
 │   └── 📁 providers/                         # 🔧 App-wide providers
 │       ├── 📄 QueryProvider.tsx
 │       ├── 📄 ThemeProvider.tsx
