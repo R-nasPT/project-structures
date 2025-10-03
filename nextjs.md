@@ -126,7 +126,7 @@
 │   │
 │   ├── 📁 lib/                               # 📚 Third-party configs
 │   │   ├── 📄 icons.ts 
-│   │   ├── 📄 logger.ts                  # 📝 Logging setup
+│   │   ├── 📄 logger.ts                      # 📝 Logging setup
 │   │   └── 📄 index.ts
 │   │
 │   ├── 📁 schemas/                           # 📂 Shared data schemas (validation, API shapes, form structures)
