@@ -257,6 +257,9 @@
 │   ├── 📄 theme.config.ts
 │   └── 📄 index.ts
 │
+├── 📁 styles/                                # 🎨 global styles, tailwind.css
+│   └── 📄 index.css
+│
 ├── 📁 types/                                 # 📘 Global types (augmentation, env)
 │   ├── 📄 vite-env.d.ts                      # Vite env
 │   ├── 📄 global.d.ts                        # Global window, etc.
