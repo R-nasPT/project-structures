@@ -1,3 +1,9 @@
+# Next.js App Router Project Structure
+
+> A scalable, enterprise-grade folder structure for Next.js applications using App Router with modern patterns
+
+## 📁 Recommended Structure
+
 ```
 📁 src/
 ├── 📁 app/                                   # 🚀 App Router (route handlers + UI entry points)
@@ -25,9 +31,10 @@
 │   │   └── 📁 orders/
 │   │       └── 📄 route.ts
 │   │
-│   ├── 📄 not-found.tsx
-│   ├── 📄 page.tsx
-│   └── 📄 layout.tsx
+│   ├── 📄 not-found.tsx                      # 🚫 Global 404 page
+│   ├── 📄 error.tsx                          # 💥 Global error page
+│   ├── 📄 page.tsx                           # 🏠 Home page
+│   └── 📄 layout.tsx                         # 🎨 Root layout
 │
 ├── 📁 features/                              # 🎯 Feature-based modules
 │   ├── 📁 auth/                              # 🔐 Authentication feature
@@ -101,9 +108,6 @@
 │   │   │
 │   │   ├── 📁 common/                        # ⚡ Common utilities - States and notifications
 │   │   │   ├── 📄 loading-spinner.tsx
-│   │   │   ├── 📄 error-boundary.tsx         # ⚠️ ไม่ค่อยจำเป็น
-│   │   │   ├── 📄 error-fallback.tsx
-│   │   │   ├── 📄 not-found.tsx
 │   │   │   └── 📄 index.ts
 │   │   └── 📄 index.ts                       # 📦 Export barrel
 │   │
@@ -173,15 +177,13 @@
 │   │   ├── 📁 header/
 │   │   ├── 📁 sidebar/
 │   │   ├── 📁 footer/
+│   │   ├── 📄 error-fallback.tsx
 │   │   └── 📄 index.ts
 │   │
 │   ├── 📁 store/                             # 🗄️ Global state management
-(Redux)
 │   │   ├── 📄 index.ts
-│   │   └── 📄 root-reducer.ts
-(Zustand)
-│   │   ├── 📄 app-store.ts
-│   │   └── 📄 index.ts
+│   │   ├── 📄 root-reducer.ts                # For Redux
+│   │   └── 📄 app-store.ts                   # For Zustand
 │   │
 │   └── 📁 providers/                         # 🔧 App-wide providers
 │       ├── 📄 query-provider.tsx
@@ -210,5 +212,41 @@
 ├── 📁 styles/                                # 🎨 global styles, tailwind.css
 │   └── 📄 globals.css
 │
-└── 📄 middleware.tsx
+└── 📄 middleware.ts                          # 🛡️ Next.js middleware
 ```
+
+## 🎯 Key Principles
+
+### 1. **App Router First**
+From Next.js 13 onwards, the App Router has been the primary routing system, with file-based routing conventions.
+- **Route Groups** `(folder)` - Organize routes without affecting URL structure
+- **Layouts** - Shared UI that persists across routes
+- **Loading States** - Automatic loading UI with `loading.tsx`
+- **Error Handling** - Error boundaries with `error.tsx`
+- **API Routes** - Server-side endpoints in `app/api/`
+
+### 2. **Feature-Based Organization**
+Each feature is self-contained with its own components, hooks, services, and types. This makes features easier to maintain, test, and scale independently.
+
+### 3. **Clear Separation of Concerns**
+- **`app/`** - File-based routing and API endpoints (Next.js App Router)
+- **`core/`** - Application infrastructure (layouts, providers, global state)
+- **`features/`** - Business logic organized by domain
+- **`shared/`** - Reusable components and utilities
+- **`config/`** - Application configuration
+
+### 4. **Component Hierarchy**
+Components are organized by complexity and purpose:
+- **`ui/`** - Basic building blocks (Button, Input, Card)
+- **`composite/`** - Combined components (SearchBox, FileUpload)
+- **`widgets/`** - Business-logic components (StatusBadge, StatCard)
+- **`wrappers/`** - Layout containers (SectionPanel, PageHeader)
+- **`common/`** - Utility components (LoadingSpinner)
+
+### 5. **Server and Client Components**
+From Next.js 13 onwards, Next.js defaults to Server Components, providing better performance.
+- Server Components fetch data directly
+- Client Components use `'use client'` directive
+- Proper separation improves bundle size and performance
+
+---
