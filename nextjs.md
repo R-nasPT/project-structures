@@ -5,10 +5,12 @@
 │   │   ├── 📁 login/
 │   │   ├── 📁 register/
 │   │   └── 📁 layout.tsx
+│   │
 │   ├── 📁 (marketing)/                       # 🌐 group routes (landing page, blog, etc.)
 │   │   ├── 📁 about/
 │   │   ├── 📁 pricing/
 │   │   └── 📄 layout.tsx
+│   │
 │   ├── 📁 (dashboard)/                       # 🔒 group routes (protected routes)
 │   │   ├── 📄 layout.tsx
 │   │   ├── 📄 page.tsx
@@ -16,11 +18,13 @@
 │   │       ├── 📄 page.tsx
 │   │       ├── 📄 loading.tsx
 │   │       └── 📄 error.tsx
+│   │
 │   ├── 📁 api/                               # 🛠️ Route handlers (API endpoints)
 │   │   ├── 📁 auth/
 │   │   ├── 📁 webhooks/
 │   │   └── 📁 orders/
 │   │       └── 📄 route.ts
+│   │
 │   ├── 📄 not-found.tsx
 │   ├── 📄 page.tsx
 │   └── 📄 layout.tsx
@@ -170,6 +174,7 @@
 │   │   ├── 📁 sidebar/
 │   │   ├── 📁 footer/
 │   │   └── 📄 index.ts
+│   │
 │   ├── 📁 store/                             # 🗄️ Global state management
 (Redux)
 │   │   ├── 📄 index.ts
@@ -177,6 +182,7 @@
 (Zustand)
 │   │   ├── 📄 app-store.ts
 │   │   └── 📄 index.ts
+│   │
 │   └── 📁 providers/                         # 🔧 App-wide providers
 │       ├── 📄 query-provider.tsx
 │       ├── 📄 theme-provider.tsx
