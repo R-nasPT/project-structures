@@ -1,22 +1,22 @@
 ```
 📁 src/
-├── 📁 app/                                   # App Router (route handlers + UI entry points)
-│   ├── 📁 (auth)/                            # Route group - Authentication
+├── 📁 app/                                   # 🚀 App Router (route handlers + UI entry points)
+│   ├── 📁 (auth)/                            # 🔑 Route group - Authentication
 │   │   ├── 📁 login/
 │   │   ├── 📁 register/
 │   │   └── 📁 layout.tsx
-│   ├── 📁 (marketing)/                       # group routes (landing page, blog, etc.)
+│   ├── 📁 (marketing)/                       # 🌐 group routes (landing page, blog, etc.)
 │   │   ├── 📁 about/
 │   │   ├── 📁 pricing/
 │   │   └── 📄 layout.tsx
-│   ├── 📁 (dashboard)/                       # group routes (protected routes)
+│   ├── 📁 (dashboard)/                       # 🔒 group routes (protected routes)
 │   │   ├── 📄 layout.tsx
 │   │   ├── 📄 page.tsx
 │   │   └── 📁 orders/
 │   │       ├── 📄 page.tsx
 │   │       ├── 📄 loading.tsx
 │   │       └── 📄 error.tsx
-│   ├── 📁 api/                               # Route handlers (API endpoints)
+│   ├── 📁 api/                               # 🛠️ Route handlers (API endpoints)
 │   │   ├── 📁 auth/
 │   │   ├── 📁 webhooks/
 │   │   └── 📁 orders/
@@ -204,5 +204,5 @@
 ├── 📁 styles/                                # 🎨 global styles, tailwind.css
 │   └── 📄 globals.css
 │
-└── 📄 middleware.tsx                         # 🚀 App entry point
+└── 📄 middleware.tsx
 ```
