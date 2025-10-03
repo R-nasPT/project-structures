@@ -9,9 +9,9 @@
 ├── 📁 core/                                  # 🏗️ Core app infrastructure
 │   ├── 📁 layout/                            # 📐 App layout components
 │   │   ├── RootLayout.tsx
-│   │   ├── 📁 Header/
-│   │   ├── 📁 Sidebar/
-│   │   ├── 📁 Footer/
+│   │   ├── 📁 header/
+│   │   ├── 📁 sidebar/
+│   │   ├── 📁 footer/
 │   │   └── 📄 index.ts
 │   ├── 📁 store/                             # 🗄️ Global state management
 (Redux)
