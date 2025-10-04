@@ -250,3 +250,444 @@ From Next.js 13 onwards, Next.js defaults to Server Components, providing better
 - Proper separation improves bundle size and performance
 
 ---
+
+## 📝 File Examples
+
+### App Router - Route Groups and Layouts
+
+#### Page Component (`app/(dashboard)/orders/page.tsx`)
+```tsx
+import { OrdersList } from '@/features/orders/components/orders-list';
+import { getOrders } from '@/features/orders/services/orders-service';
+
+export default async function OrdersPage() {
+  // Server Component - fetch data directly
+  const orders = await getOrders();
+
+  return (
+    <div className="orders-page">
+      <h1>Orders</h1>
+      <OrdersList orders={orders} />
+    </div>
+  );
+}
+```
+
+#### Error Handling (`app/(dashboard)/orders/error.tsx`)
+```tsx
+'use client';
+
+import { useEffect } from 'react';
+import { ErrorFallback } from '@/shared/components/common/error-fallback';
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <ErrorFallback
+      error={error}
+      reset={reset}
+    />
+  );
+}
+```
+
+---
+
+## 🎯 Features - Business Logic Modules
+
+Each feature is a self-contained module following the same structure.
+
+### Standard Feature Structure
+
+```
+features/[feature-name]/
+├── components/              # Feature-specific components
+├── hooks/                   # Custom hooks for business logic
+├── schemas/                 # Validation schemas (Zod/Yup)
+├── services/                # API calls and data fetching
+├── store/                   # Feature-specific state
+├── types/                   # TypeScript definitions
+├── constants/               # Feature-specific constants
+└── helpers/                 # Feature-specific utilities
+```
+
+### Example Feature
+
+#### Auth Feature Service (`features/auth/services/auth-service.ts`)
+```typescript
+import { api } from '@/shared/services/api/api-client';
+import type { LoginCredentials, AuthResponse } from '../types/auth-types';
+
+export const authService = {
+  login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
+    const response = await api.post<AuthResponse>('/auth/login', credentials);
+    return response.data;
+  },
+
+  logout: async (): Promise<void> => {
+    await api.post('/auth/logout');
+  },
+
+  getCurrentUser: async () => {
+    const response = await api.get('/auth/me');
+    return response.data;
+  },
+};
+```
+
+---
+
+## 🔄 Shared Components
+
+### Component Categories
+
+#### 🧱 `ui/` - Basic Building Blocks
+Pure UI components with no business logic.
+
+```tsx
+// shared/components/ui/button.tsx
+import type { ButtonHTMLAttributes } from 'react';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+export function Button({ 
+  variant = 'primary', 
+  size = 'md',
+  className = '',
+  children,
+  ...props 
+}: ButtonProps) {
+  return (
+    <button 
+      className={`btn btn-${variant} btn-${size} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+#### 🔗 `composite/` - Combined Components
+Components that combine multiple UI elements.
+
+```tsx
+// shared/components/composite/search-box.tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Input } from '@/shared/components/ui/input';
+import { Button } from '@/shared/components/ui/button';
+
+interface SearchBoxProps {
+  onSearch: (query: string) => void;
+  debounce?: number;
+  placeholder?: string;
+}
+
+export function SearchBox({ 
+  onSearch, 
+  debounce = 300,
+  placeholder = 'Search...',
+}: SearchBoxProps) {
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onSearch(value);
+    }, debounce);
+
+    return () => clearTimeout(timer);
+  }, [value, debounce, onSearch]);
+
+  return (
+    <div className="search-box">
+      <Input 
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder={placeholder}
+      />
+      {value && (
+        <Button 
+          variant="ghost" 
+          onClick={() => setValue('')}
+        >
+          Clear
+        </Button>
+      )}
+    </div>
+  );
+}
+```
+
+#### 🎯 `widgets/` - Business Logic Components
+Components with domain-specific logic.
+
+```tsx
+// shared/components/widgets/status-badge.tsx
+import { Badge } from '@/shared/components/ui/badge';
+
+type Status = 'pending' | 'approved' | 'rejected';
+
+const statusConfig = {
+  pending: { color: 'yellow', icon: '⏳', label: 'Pending' },
+  approved: { color: 'green', icon: '✓', label: 'Approved' },
+  rejected: { color: 'red', icon: '✗', label: 'Rejected' },
+} as const;
+
+interface StatusBadgeProps {
+  status: Status;
+}
+
+export function StatusBadge({ status }: StatusBadgeProps) {
+  const config = statusConfig[status];
+  
+  return (
+    <Badge variant={config.color}>
+      <span>{config.icon}</span>
+      <span>{config.label}</span>
+    </Badge>
+  );
+}
+```
+
+---
+
+## 📊 Component Decision Tree
+
+```
+Need to create a component?
+│
+├─ Basic UI element? (Button, Input, Card)
+│  └─ ✅ Place in shared/components/ui/
+│
+├─ Combines multiple UI elements? (SearchBox, FileUpload)
+│  └─ ✅ Place in shared/components/composite/
+│
+├─ Has business logic? (StatusBadge, StatCard)
+│  └─ ✅ Place in shared/components/widgets/
+│
+├─ Layout/Structure purpose? (SectionPanel, PageHeader)
+│  └─ ✅ Place in shared/components/wrappers/
+│
+├─ Utility/State component? (LoadingSpinner, ErrorBoundary)
+│  └─ ✅ Place in shared/components/common/
+│
+└─ Feature-specific? (LoginForm, OrderCard)
+   └─ ✅ Place in features/[feature]/components/
+```
+
+---
+
+## 🚀 Benefits
+
+### ✅ **Scalability**
+- Feature-based organization scales with your app
+- Route groups organize without affecting URLs
+- Easy to add new features independently
+- Clear boundaries between modules
+
+### ✅ **Maintainability**
+- Related code grouped together
+- Consistent patterns across codebase
+- Easy to locate specific functionality
+- Self-documenting structure
+
+### ✅ **Code Reusability**
+- Shared components and hooks prevent duplication
+- Features can be easily extracted or reused
+- Common patterns are centralized
+- Component hierarchy promotes composition
+
+### ✅ **Developer Experience**
+- Predictable file locations
+- Type-safe with TypeScript
+- Modern React patterns
+- Easy to onboard new developers
+
+---
+
+## 🎨 Naming Conventions
+
+### Files and Folders
+- Use **kebab-case** for all files and folders in Next.js:
+  - Components: `user-profile.tsx`, `product-card.tsx`
+  - Services: `auth-service.ts`, `orders-service.ts`
+  - Hooks: `use-auth.ts`, `use-orders.ts`
+  - Utils: `date-utils.ts`, `format-utils.ts`
+  - Constants: `routes-constants.ts`, `app-constants.ts`
+  - Types: `auth-types.ts`, `api-types.ts`
+
+### Next.js Special Files
+- Use **lowercase** for Next.js convention files:
+  - `page.tsx` - Route page
+  - `layout.tsx` - Layout wrapper
+  - `loading.tsx` - Loading UI
+  - `error.tsx` - Error boundary
+  - `not-found.tsx` - 404 page
+  - `route.ts` - API route handler
+
+### Route Groups
+- Use **parentheses** for route groups: `(auth)`, `(dashboard)`, `(marketing)`
+
+### Constants
+- Use **UPPER_CASE** for constant variables: `API_BASE_URL`, `MAX_FILE_SIZE`
+
+---
+
+## 📚 Additional Tips
+
+### Import Organization
+```tsx
+// 1. React and Next.js
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
+// 2. External libraries
+import { useQuery } from '@tanstack/react-query';
+import { z } from 'zod';
+
+// 3. Internal imports - grouped by source
+import { Button } from '@/shared/components/ui/button';
+import { SearchBox } from '@/shared/components/composite/search-box';
+import { useDebounce } from '@/shared/hooks/use-debounce';
+
+// 4. Feature imports
+import { useOrders } from '@/features/orders/hooks/use-orders';
+import { ordersService } from '@/features/orders/services/orders-service';
+
+// 5. Types
+import type { Order } from '@/features/orders/types/order-types';
+
+// 6. Relative imports (only when necessary)
+import { OrderCard } from './order-card';
+```
+
+### Server vs Client Components
+
+```tsx
+// ✅ Server Component (default)
+// app/(dashboard)/orders/page.tsx
+import { ordersService } from '@/features/orders/services/orders-service';
+import { OrdersList } from '@/features/orders/components/orders-list';
+
+// This component runs on the server
+export default async function OrdersPage() {
+  // Direct async/await - no need for useEffect or useState
+  const orders = await ordersService.getAll();
+
+  return (
+    <div>
+      <h1>Orders</h1>
+      <OrdersList orders={orders} />
+    </div>
+  );
+}
+
+// ✅ Client Component (when needed)
+// features/orders/components/orders-list-client.tsx
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import { ordersService } from '../services/orders-service';
+import { OrderCard } from './order-card';
+import { LoadingSpinner } from '@/shared/components/common/loading-spinner';
+import { ErrorFallback } from '@/shared/components/common/error-fallback';
+
+export function OrdersListClient() {
+  const { data: orders, isLoading, error } = useQuery({
+    queryKey: ['orders'],
+    queryFn: () => ordersService.getAll(),
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorFallback error={error} />;
+  }
+
+  return (
+    <div className="orders-grid">
+      {orders?.map(order => (
+        <OrderCard key={order.id} order={order} />
+      ))}
+    </div>
+  );
+}
+```
+
+### Barrel Exports
+Use `index.ts` files to create clean import paths:
+
+```typescript
+// features/orders/components/index.ts
+export { OrdersList } from './orders-list';
+export { OrderCard } from './order-card';
+export { OrderFilters } from './order-filters';
+export { OrderDetails } from './order-details';
+
+// Usage
+import { OrdersList, OrderCard } from '@/features/orders/components';
+```
+
+---
+
+## 🧪 Testing Structure
+
+### Testing Setup
+
+```
+tests/
+├── e2e/                      # End-to-end tests (Playwright)
+│   ├── auth.spec.ts
+│   ├── orders.spec.ts
+│   └── dashboard.spec.ts
+│
+├── integration/              # Integration tests
+│   ├── api/
+│   │   ├── orders.test.ts
+│   │   └── auth.test.ts
+│   └── features/
+│       └── orders/
+│           └── orders-service.test.ts
+│
+└── unit/                     # Unit tests
+    └── shared/
+        ├── components/
+        │   └── ui/
+        │       └── button.test.tsx
+        └── utils/
+            └── format-utils.test.ts
+```
+
+---
+
+## 🎉 Conclusion
+
+This Next.js structure provides a solid foundation for building modern, scalable web applications. Key takeaways:
+
+* **Feature-based** organization keeps related code together
+* **Clear component hierarchy** (ui → composite → widgets → wrappers)
+* **Separation of concerns** across core, features, shared modules, and the application layer
+* **Type-safe** throughout with TypeScript
+* **Consistent patterns** make the codebase predictable
+* **Easy to maintain** and extend as the app grows
+
+Remember: This structure is a guideline that should be adapted to your specific needs. Start with the basics and expand as your application grows.
+
+**Happy coding with Next.js! 🚀**
