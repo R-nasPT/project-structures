@@ -8,7 +8,7 @@
 📁 src/
 ├── 📁 core/                                  # 🏗️ Core app infrastructure
 │   ├── 📁 layout/                            # 📐 App layout components
-│   │   ├── RootLayout.tsx
+│   │   ├── 📄 RootLayout.tsx
 │   │   ├── 📁 header/
 │   │   ├── 📁 sidebar/
 │   │   ├── 📁 footer/
