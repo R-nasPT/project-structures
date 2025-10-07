@@ -652,7 +652,7 @@ import { OrdersList, OrderCard } from '@/features/orders/components';
 ### Testing Setup
 
 ```
-tests/
+__tests__/
 ├── e2e/                      # End-to-end tests (Playwright)
 │   ├── auth.spec.ts
 │   ├── orders.spec.ts
@@ -660,8 +660,8 @@ tests/
 │
 ├── integration/              # Integration tests
 │   ├── api/
-│   │   ├── orders-test.ts
-│   │   └── auth-test.ts
+│   │   ├── orders.test.ts
+│   │   └── auth.test.ts
 │   └── features/
 │       └── orders/
 │           └── orders-service.test.ts
@@ -670,7 +670,7 @@ tests/
     └── shared/
         ├── components/
         │   └── ui/
-        │       └── button-test.tsx
+        │       └── button.test.tsx
         └── utils/
             └── format-utils.test.ts
 ```
