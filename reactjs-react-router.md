@@ -41,7 +41,8 @@
 │   └── 📁 providers/                         # 🔧 App-wide providers
 │       ├── 📄 QueryProvider.tsx
 │       ├── 📄 ThemeProvider.tsx
-│       └── 📄 AuthProvider.tsx
+│       ├── 📄 AuthProvider.tsx
+│       └── 📄 index.tsx
 │
 ├── 📁 features/                              # 🎯 Feature-based modules
 │   ├── 📁 auth/                              # 🔐 Authentication feature
