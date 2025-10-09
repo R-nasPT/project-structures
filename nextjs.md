@@ -236,7 +236,7 @@ Each feature is self-contained with its own components, hooks, services, and typ
 - **`config/`** - Application configuration
 
 ### 4. **Component Hierarchy**
-Components are organized by complexity and purpose:
+Components are organized by complexity and purpose :
 - **`ui/`** - Basic building blocks (Button, Input, Card)
 - **`composite/`** - Combined components (SearchBox, FileUpload)
 - **`widgets/`** - Business-logic components (StatusBadge, StatCard)
