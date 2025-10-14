@@ -1,6 +1,6 @@
 # Next.js App Router Project Structure
 
-> A scalable, enterprise-grade folder structure for Next.js applications using App Router with modern patterns
+> A scalable, enterprise-grade folder structure for Next.js applications using App Router with modern patterns.
 
 ## 📁 Recommended Structure
 
