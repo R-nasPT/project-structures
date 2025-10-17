@@ -679,7 +679,7 @@ __tests__/
 
 ## 🎉 Conclusion
 
-This Next.js structure provides a solid foundation for building modern, scalable web applications. Key takeaways:
+This Next.js structure provides a solid foundation for building modern, scalable web applications. Key takeaways :
 
 * **Feature-based** organization keeps related code together
 * **Clear component hierarchy** (ui → composite → widgets → wrappers)
