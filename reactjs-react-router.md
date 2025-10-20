@@ -265,7 +265,7 @@
 │   └── 📄 index.css
 │
 ├── 📁 types/                                 # 📘 Global types (augmentation, env)
-│   ├── 📄 vite-env.d.ts                      # Vite env
+│   ├── 📄 env.d.ts                           # Vite env
 │   ├── 📄 global.d.ts                        # Global window, etc.
 │   ├── 📄 react-query.d.ts                   # Extend React Query
 │   └── 📄 material-ui.d.ts                   # Extend MUI theme
