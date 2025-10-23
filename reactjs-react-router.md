@@ -153,6 +153,7 @@
 │   │   │   │   ├── 📄 SectionPanel.types.tsx
 │   │   │   │   └── 📄 index.ts
 │   │   │   ├── 📁 page-header/
+│   │   │   ├── 📁 print-page-style/
 │   │   │   └── 📄 index.ts
 │   │   │
 │   │   ├── 📁 common/                        # ⚡ Common utilities - States and notifications
