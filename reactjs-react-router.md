@@ -35,7 +35,6 @@
 │   │   │   └── 📄 AdminRoute.tsx             # 🔒 (optional) สำหรับ role-based
 │   │   └── 📁 loaders/                       # 📥 Data pre-fetching
 │   │       ├── 📄 dashboardLoader.ts
-│   │       ├── 📄 userLoader.ts
 │   │       └── 📄 settingsLoader.ts
 │   │
 │   └── 📁 providers/                         # 🔧 App-wide providers
