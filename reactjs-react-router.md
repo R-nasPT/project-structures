@@ -34,7 +34,6 @@
 │   │   │   ├── 📄 GuestRoute.tsx             # 🚪 (optional) For pages that cannot be accessed after logging in, such as LoginPage
 │   │   │   └── 📄 AdminRoute.tsx             # 🔒 (optional) สำหรับ role-based
 │   │   └── 📁 loaders/                       # 📥 Data pre-fetching
-│   │       ├── 📄 dashboardLoader.ts
 │   │       └── 📄 settingsLoader.ts
 │   │
 │   └── 📁 providers/                         # 🔧 App-wide providers
