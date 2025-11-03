@@ -26,15 +26,13 @@
 │   ├── 📁 router/                            # 🧭 Router configuration
 │   │   ├── 📄 index.tsx                      # Route definitions
 │   │   ├── 📄 routes.ts
-│   │   ├── 📁 guards/                        # 🛡️ Route protection
-│   │   │   ├── 📄 ProtectedRoute.tsx         # 🔒 Auth protection wrapper
-│   │   │   ├── 📄 RouteGuards.tsx
-│   │   │   ├── 📄 AuthGuard.tsx
-│   │   │   ├── 📄 RoleGuard.tsx
-│   │   │   ├── 📄 GuestRoute.tsx             # 🚪 (optional) For pages that cannot be accessed after logging in, such as LoginPage
-│   │   │   └── 📄 AdminRoute.tsx             # 🔒 (optional) สำหรับ role-based
-│   │   └── 📁 loaders/                       # 📥 Data pre-fetching
-│   │       └── 📄 settingsLoader.ts
+│   │   └── 📁 guards/                        # 🛡️ Route protection
+│   │       ├── 📄 ProtectedRoute.tsx         # 🔒 Auth protection wrapper
+│   │       ├── 📄 RouteGuards.tsx
+│   │       ├── 📄 AuthGuard.tsx
+│   │       ├── 📄 RoleGuard.tsx
+│   │       ├── 📄 GuestRoute.tsx             # 🚪 (optional) For pages that cannot be accessed after logging in, such as LoginPage
+│   │       └── 📄 AdminRoute.tsx             # 🔒 (optional) สำหรับ role-based
 │   │
 │   └── 📁 providers/                         # 🔧 App-wide providers
 │       ├── 📄 QueryProvider.tsx
@@ -60,7 +58,7 @@
 │   │   │   └── 📄 index.ts
 │   │   ├── 📁 queries/
 │   │   │   └── 📄 auth.queries.ts
-│   │   ├── 📁 loaders/
+│   │   ├── 📁 loaders/                       # 📥 Data pre-fetching
 │   │   │   └── 📄 auth.loader.ts
 │   │   ├── 📁 types/                         # 🧬 Feature-specific types
 │   │   │   ├── 📄 auth.types.ts
