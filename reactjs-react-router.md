@@ -188,6 +188,11 @@
 │   │   ├── 📄 usePermissions.ts
 │   │   └── 📄 index.ts
 │   │
+│   ├── 📁 keys/                              # 🔑 React Query keys for caching and data separation
+│   │   ├── 📄 auth.keys.ts
+│   │   ├── 📄 users.keys.ts                  # 👥 Query keys related to user data
+│   │   └── 📄 index.ts
+│   │
 │   ├── 📁 lib/                               # 📚 Third-party configs
 │   │   ├── 📄 axios.lib.ts
 │   │   ├── 📄 icons.lib.ts 
