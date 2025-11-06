@@ -392,11 +392,13 @@ features/[feature-name]/
 ├── hooks/                   # Custom hooks for business logic
 ├── schemas/                 # Validation schemas (Zod/Yup)
 ├── services/                # API calls and external services
-├── store/                   # Feature-specific state
-├── types/                   # TypeScript definitions
-├── constants/               # Feature-specific constants
+├── store/                   # Feature-specific state (e.g., Zustand, Redux)
+├── types/                   # TypeScript definitions (interfaces, enums, etc.)
+├── constants/               # Feature-specific constants (e.g., statuses, labels)
 ├── helpers/                 # Feature-specific utilities
-└── routes.ts                # Feature route definitions
+├── queries/                 # React Query definitions (fetchers, useQuery/useMutation)
+├── loaders/                 # Data loaders (e.g., for server-side or route-level data fetching)
+└── routes.ts                # Feature route definitions (e.g., path configs or lazy-loaded routes)
 ```
 
 ---
