@@ -1,6 +1,6 @@
 # 🏗️ Project Structure Guide
 
-> A comprehensive collection of project folder structures and architectural patterns for modern frameworks and libraries.
+> A comprehensive collection of project folder structures and architectural patterns for modern frameworks and libraries. 
 
 ![Made with Love](https://img.shields.io/badge/made%20with-❤️-pink.svg)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
