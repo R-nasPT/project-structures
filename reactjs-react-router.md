@@ -1,6 +1,6 @@
 # React.js + React Router Project Structure
 
-> A scalable, enterprise-grade folder structure for React applications using React Router with modern patterns.
+> A scalable, enterprise-grade folder structure for React applications using React Router with modern patterns. 
 
 ## 📁 Recommended Structure
 
