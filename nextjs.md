@@ -212,7 +212,7 @@
 ├── 📁 styles/                                # 🎨 global styles, tailwind.css
 │   └── 📄 globals.css
 │
-└── 📄 middleware.ts                          # 🛡️ Next.js middleware
+└── 📄 proxy.ts (or middleware.ts)            # 🛡️ Next.js middleware
 ```
 
 ## 🎯 Key Principles
